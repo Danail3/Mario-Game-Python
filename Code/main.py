@@ -1,5 +1,7 @@
-import sys, pygame
+import pygame
 from settings import *
+
+from editor import Editor
 
 class Main:
     #initializes pygame
@@ -8,16 +10,17 @@ class Main:
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         #controls frame rate
         self.clock = pygame.time.Clock()
+        self.editor = Editor()
+        
+       
     
     def run(self):
         while True:
             #needed for the game to run smoothly
             delta_time = self.clock.tick() / 1000
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+
                 
+            self.editor.run(delta_time)
             pygame.display.update()
     
 # checking if we are in the main file
